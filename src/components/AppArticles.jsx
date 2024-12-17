@@ -17,6 +17,12 @@ function AppArticles() {
         setTitle("");
     }
 
+    // Delete Function
+    const handleDelete = (articleToDelete) => {
+        const filteredList = articlesList.filter(curArticle => curArticle !== articleToDelete)
+        setArticlesList(filteredList);
+    }
+
     return (
         <>
             {/* Form */}
@@ -31,12 +37,12 @@ function AppArticles() {
             {/* Articles */}
             <section className='mt-5'>
                 <h3 className='pb-3'>My Articles</h3>
-                {articlesList.map(curArtcile =>
-                    <div key={curArtcile.id} className="mb-3">
+                {articlesList.map(curArticle =>
+                    <div key={curArticle.id} className="mb-3">
                         <div className="card">
                             <div className="card-body d-flex justify-content-between align-items-center">
-                                <h5 className="card-title">{curArtcile.title}</h5>
-                                <button className='btn btn-outline-danger'>Delete</button>
+                                <h5 className="card-title">{curArticle.title}</h5>
+                                <button onClick={() => handleDelete(curArticle)} className='btn btn-outline-danger'>Delete</button>
                             </div>
                         </div>
                     </div>)}
