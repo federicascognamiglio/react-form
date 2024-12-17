@@ -1,5 +1,5 @@
 import articles from "./data/articles";
-import ArticlesForm from './components/ArticlesForm';
+import ArticlesForm from './components/AppArticles';
 import AppArticles from './components/AppArticles';
 
 function App() {
@@ -15,16 +15,7 @@ function App() {
         {/* Form Section */}
         <section>
           <h3 className="pt-4">Add Article</h3>
-          <ArticlesForm title={articles[0].title} />
-        </section>
-        {/* Articles Section */}
-        <section>
-          <h3 className="pt-5 pb-3">My Articles</h3>
-          {articles.map(curArticle => <AppArticles
-            key={curArticle.id}
-            title={curArticle.title}
-            author={curArticle.author}
-            state={curArticle.state} />)}
+          <AppArticles />
         </section>
       </main>
     </>
