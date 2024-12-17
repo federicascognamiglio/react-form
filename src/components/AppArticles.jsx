@@ -7,7 +7,20 @@ function AppArticles() {
     const [newTitle, setTitle] = useState("");
     // Article Author
     const [newAuthor, setAuthor] = useState("");
+    // Article State
+    const [newState, setState] = useState("");
 
+    const checkStateClass = (selectedValue) => {
+        let stateClass;
+        if (selectedValue === "Published") {
+            stateClass = "btn-success"
+        } else if (selectedValue === "Draft") {
+            stateClass = "btn-warning"
+        } else {
+            stateClass = "btn-primary"
+        }
+        return stateClass;
+    }
 
     // Valori per form
     const [articlesList, setArticlesList] = useState(articles);
@@ -31,7 +44,7 @@ function AppArticles() {
     }
 
     return (
-        <>  
+        <>
             {/* Form */}
             <section className="pt-4">
                 <h3>Add Article</h3>
@@ -44,6 +57,13 @@ function AppArticles() {
                         <label htmlFor="articleAuthor" className='form-label'>Article Author</label>
                         <input className='form-control' value={newAuthor} onChange={(event) => setAuthor(event.target.value)} type="text" id='articleAuthor' />
                     </div>
+                    <div className="w-50 mt-3">
+                        <select onChange={(event) => setState(event.target.value)} className="form-select" aria-label="Article State">
+                            <option value="Published">Published</option>
+                            <option value="Draft">Draft</option>
+                            <option value="Review">Review</option>
+                        </select>
+                    </div>
                     <button type='submit' className="btn btn-primary mt-3">Salva</button>
                 </form>
             </section>
@@ -55,7 +75,8 @@ function AppArticles() {
                     <div key={curArticle.id} className="mb-3">
                         <div className="card">
                             <div className="card-body d-flex justify-content-between align-items-center">
-                                <h5 className="card-title">{curArticle.title} - {curArticle.author}</h5>
+                                <h6 className='m-0'>{curArticle.title} - {curArticle.author}</h6>
+                                <span className={`btn btn-sm ${checkStateClass(curArticle.state)}`}>{curArticle.state}</span>
                                 <button onClick={() => handleDelete(curArticle)} className='btn btn-outline-danger'>Delete</button>
                             </div>
                         </div>
