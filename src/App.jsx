@@ -1,5 +1,3 @@
-import articles from "./data/articles";
-import ArticlesForm from './components/AppArticles';
 import AppArticles from './components/AppArticles';
 
 function App() {
@@ -12,9 +10,7 @@ function App() {
       </header>
       {/* Main */}
       <main className='container'>
-        {/* Form Section */}
         <section>
-          <h3 className="pt-4">Add Article</h3>
           <AppArticles />
         </section>
       </main>
